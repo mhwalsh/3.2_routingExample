@@ -6,12 +6,18 @@
   </head>
   <body>
     <h2>GET TEST</h2>
-    <!-- form action points to the route that is in app.js with method "get" -->
+    <!-- form action points to the route that is in app.js with method "get" (processStuff) -->
     <form action="http://localhost:8080/processStuff" method="get">
       <!-- this input name will show in the route's req.query.NAME (ex: req.query.catNameIn) -->
       <input type="text" name="catNameIn" />
       <!-- clicking submit will send the input fields to the action URL -->
       <input type="submit" value="Submit" />
     </form>
+      <h2>POST TEST</h2>
+      <form action="http://localhost:8080/processPost" method="post">
+        <!-- this input name will show in the route's req.body.NAME (ex: req.body.dogNameIn) -->
+        <input type="text" name="dogNameIn" />
+        <input type="submit" value="Submit" />
+      </form>
   </body>
 </html>

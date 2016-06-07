@@ -4,6 +4,11 @@ var express = require( 'express' );
 var app = express();
 // require path
 var path = require( 'path' );
+/// FIRST RUN: npm install body-parser --save
+// these are needed for POST
+var bodyParser = require( 'body-parser' );
+// don't use extended as
+var urlencodedParser = bodyParser.urlencoded( { extended:false } );
 
 // spin up the server
 var server = app.listen( 8080, 'localhost', function(){
@@ -29,8 +34,15 @@ app.get( '/kitties', function( req, res ){
 });
 
 app.get( '/processStuff', function( req, res){
-  // receives a request from the form on getTest.html (route: gettinTestyWithIt)
-  res.write( 'request received: ' + req.query.catNameIn );
+  // receives a GET request from the form on getTest.html (route: gettinTestyWithIt)
+  res.write( 'get request received: ' + req.query.catNameIn );
+  res.end();
+});
+
+// urlencodedParser "dependency injection" is needed for POST
+app.post( '/processPost', urlencodedParser, function( req, res){
+  // receives a POST request from the form on getTest.html (route: gettinTestyWithIt)
+  res.write( 'post request received: ' + req.body.dogNameIn );
   res.end();
 });
 
